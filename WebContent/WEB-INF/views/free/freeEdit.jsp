@@ -1,10 +1,3 @@
-<%@page import="com.study.code.vo.CodeVO"%>
-<%@page import="com.study.code.service.CommonCodeServiceImpl"%>
-<%@page import="com.study.code.service.ICommonCodeService"%>
-<%@page import="com.study.exception.BizNotFoundException"%>
-<%@page import="com.study.free.vo.FreeBoardVO"%>
-<%@page import="com.study.free.service.FreeBoardServiceImpl"%>
-<%@page import="com.study.free.service.IFreeBoardService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>	
@@ -20,24 +13,10 @@
   <div class="page-header">
     <h3>자유게시판 - <small>글 수정</small></h3>
   </div>
-  <% 
-		IFreeBoardService freeBoardService = new FreeBoardServiceImpl();
- 		ICommonCodeService codeService = new CommonCodeServiceImpl();
-		try{
-			String boNo = request.getParameter("boNo");
-			FreeBoardVO boardVO = freeBoardService.getBoard(Integer.parseInt(boNo));
-			request.setAttribute("boardVO", boardVO);
-			
-			List<CodeVO> categorylist = codeService.getCodeListByParent("BC00");
-			request.setAttribute("categorylist", categorylist);
-		}catch(BizNotFoundException ex){
-			request.setAttribute("ex", ex);
-		}
-%>
 	<c:if test="${not empty ex}">
 			<div class="alert alert-warning">
 				<p> 해당 글이 존재하지 않습니다. </p> 
-				<a href="freeList.jsp" class="btn btn-default btn-sm"> 
+				<a href="freeList.wow" class="btn btn-default btn-sm"> 
 					<span class="glyphicon glyphicon-list" aria-hidden="true"></span>
 					&nbsp;목록  
 				</a>
@@ -45,7 +24,7 @@
 		</c:if>		
   
   <c:if test="${empty ex}">	
-	<form action="freeModify.jsp" method="post">
+	<form action="freeModify.wow" method="post">
 	<input type="hidden" name="boNo" value="${boardVO.boNo}">	
 	<table class="table table-striped table-bordered">
 		<colgroup>
@@ -109,7 +88,7 @@
 		<tr>
 			<td colspan="2">
           <div class="pull-left">
-              <a href="freeList.jsp" class="btn btn-default btn-sm"> 
+              <a href="freeList.wow" class="btn btn-default btn-sm"> 
                 <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
                 &nbsp;&nbsp;목록
               </a>
@@ -117,7 +96,7 @@
             
             <div class="pull-right">
               <!-- 문제점 : 사용자가 입력박스에서 엔터를 치면 첫번째 submit의 formaction 방향으로 이동한다.  -->
-              <button type="submit"  formaction="freeDelete.jsp" class="btn btn-sm btn-danger"> 
+              <button type="submit"  formaction="freeDelete.wow" class="btn btn-sm btn-danger"> 
                 <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                 &nbsp;&nbsp;삭제
               </button>

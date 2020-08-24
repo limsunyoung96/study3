@@ -1,6 +1,3 @@
-<%@page import="com.study.code.vo.CodeVO"%>
-<%@page import="com.study.code.service.CommonCodeServiceImpl"%>
-<%@page import="com.study.code.service.ICommonCodeService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 <!DOCTYPE html>
@@ -12,16 +9,11 @@
 <body>
 <%@include file="/WEB-INF/inc/top.jsp" %>
 <div class="container">
-<%
-	ICommonCodeService codeService = new CommonCodeServiceImpl();
-	List<CodeVO> zzz = codeService.getCodeListByParent("BC00");
-	request.setAttribute("categoryList", zzz);
-%>
 	<div class="page-header">
 		<h3>글 등록</h3>
 	</div>
 	<div class="row" >
-	<form action="freeRegist.jsp" method="post">	
+	<form action="freeRegist.wow" method="post">	
 	<table class="table table-striped table-bordered">
 		<colgroup>
 			<col width="20%" />
@@ -63,7 +55,7 @@
 		<tr>
 			<td colspan="2">
 					<div class="pull-left">
-						<a href="freeList.jsp" class="btn btn-sm btn-default">목록으로</a>
+						<a href="freeList.wow" class="btn btn-sm btn-default">목록으로</a>
 					</div>
 					<div class="pull-right">
 						<button type="submit" class="btn btn-sm btn-primary">저장하기</button>
