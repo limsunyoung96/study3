@@ -20,6 +20,7 @@ public class StudyDispatcherController extends HttpServlet {
 		try {
 			handlerMapping = new UrlHandlerMapping(getServletContext(), contextConfigLocation);
 		} catch (Exception e) {
+			e.printStackTrace();
 			throw new ServletException(e);
 		}
 	} // init
@@ -32,7 +33,10 @@ public class StudyDispatcherController extends HttpServlet {
 		// 2. 요청을 분석한다.( 명령 파라미터 or URI )
 		String uri = req.getRequestURI();
 		uri = uri.substring(req.getContextPath().length());
+		// uri에 세미콜론이 있는 경우 제거 ;jsession
 		System.out.printf("요청 URI = %s\n", uri);
+		
+		
 		try {
 			String viewPage = null;
 			IController controller = null;
@@ -66,4 +70,4 @@ public class StudyDispatcherController extends HttpServlet {
 			throw new ServletException(e);
 		}
 	} // service
-}
+} // class

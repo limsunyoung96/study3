@@ -14,7 +14,7 @@ import com.study.free.vo.FreeBoardSearchVO;
 import com.study.free.vo.FreeBoardVO;
 import com.study.servlet.IController;
 
-public class FreeListControlle implements IController {
+public class FreeListController implements IController {
 	IFreeBoardService freeBoardService = new FreeBoardServiceImpl();
 	ICommonCodeService codeService = new CommonCodeServiceImpl();
 

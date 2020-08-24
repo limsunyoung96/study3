@@ -20,7 +20,7 @@ import com.study.free.vo.FreeBoardVO;
 import com.study.free.web.FreeDeleteController;
 import com.study.free.web.FreeEditController;
 import com.study.free.web.FreeFormController;
-import com.study.free.web.FreeListControlle;
+import com.study.free.web.FreeListController;
 import com.study.free.web.FreeModifyController;
 import com.study.free.web.FreeRegistController;
 import com.study.free.web.FreeViewController;
@@ -54,7 +54,7 @@ public class SimpleController extends HttpServlet {
 		String viewPage = "";
 		IController controller = null;
 		if ("/free/freeList.wow".equals(uri)) {
-			controller = new FreeListControlle();
+			controller = new FreeListController();
 		} else if ("/free/freeView.wow".equals(uri)) {
 			controller = new FreeViewController();
 		} else if ("/free/freeForm.wow".equals(uri)) {

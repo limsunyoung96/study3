@@ -19,20 +19,20 @@
 			</div>
 		</c:if>
 
-		<c:if test="${empty exNotFound}">
+		<c:if test="${not empty exNotFound}">
 			<div class="alert alert-warning">
 				<h4>글이 존재하지 않습니다.</h4>
 				올바르게 접근해 주세요.
 			</div>
 
 		</c:if>
-		<c:if test="${empty exPassword}">
+		<c:if test="${not empty exPassword}">
 			<div class="alert alert-warning">
 				<h4>비밀번호가 틀립니다.</h4>
 				비밀번호를 다시 확인해 주세요.
 			</div>
 		</c:if>
-		<a href="freeList.jsp" class="btn btn-info"> <span
+		<a href="freeList.wow" class="btn btn-info"> <span
 			class="glyphicon glyphicon-list" aria-hidden="true"></span> &nbsp;목록
 		</a>
 	</div>

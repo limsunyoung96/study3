@@ -28,8 +28,8 @@ public class UrlHandlerMapping {
 			Class<?> handlerClass = Class.forName(handlerClassName);
 			IController handler = (IController) handlerClass.newInstance();
 			handlerMap.put(uri, handler);
-			
-			System.out.println(uri + " -> " + handlerClassName+" 웹에 저장 ");
+
+			System.out.println(uri + " -> " + handlerClassName + " 웹에 저장 ");
 		}
 	}
 
