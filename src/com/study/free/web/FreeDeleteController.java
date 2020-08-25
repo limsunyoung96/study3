@@ -7,6 +7,7 @@ import org.apache.commons.beanutils.BeanUtils;
 
 import com.study.code.service.CommonCodeServiceImpl;
 import com.study.code.service.ICommonCodeService;
+import com.study.common.vo.ResultMessageVO;
 import com.study.exception.BizNotFoundException;
 import com.study.exception.BizPasswordNotMatchedException;
 import com.study.free.service.FreeBoardServiceImpl;
@@ -24,18 +25,29 @@ public class FreeDeleteController implements IController {
 //		<jsp:setProperty property="*" name="board" />
 		FreeBoardVO board = new FreeBoardVO();
 		BeanUtils.populate(board, req.getParameterMap());
+		ResultMessageVO messageVO = new ResultMessageVO();
 		try { // 성공
 			board.setBoIp(req.getRemoteAddr());
 			freeBoardService.removeBoard(board);
-
+			return "redirect:/free/freeView.wow?boNo="+req.getParameter("boNo");
+			
+				
 		} catch (BizNotFoundException exNotFound) {
 			exNotFound.printStackTrace();
-			req.setAttribute("exNotFound", exNotFound);
+			messageVO.setResult(false).setTitle("글 삭제 실패")
+			  .setMessage("글이 존재하지 않습니다.")
+			  .setUrl("/free/freeList.wow")
+			  .setUrlTitle("목록으로");
+			
 		} catch (BizPasswordNotMatchedException exPassword) {
 			exPassword.printStackTrace();
-			req.setAttribute("exPassword", exPassword);
+			messageVO.setResult(false).setTitle("글 삭제 실패")
+			  .setMessage("비밀번호가 일치하지 않습니다.")
+			  .setUrl("/free/freeList.wow")
+			  .setUrlTitle("목록으로");
 		}
-		return "/WEB-INF/views/free/freeDelete.jsp";
+		req.setAttribute("messageVO", messageVO);
+		return "/WEB-INF/views/common/message.jsp";
 	}
 
 }

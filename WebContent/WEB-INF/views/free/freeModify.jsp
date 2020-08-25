@@ -22,7 +22,7 @@
 	<div class="container">
 		<h3>회원 정보 수정</h3>
 
-		<c:if test="${empty exNotFound && empty exPassword}">
+		<%-- <c:if test="${empty exNotFound && empty exPassword}">
 			<div class="alert alert-warning">
 				<h4>수정이 완료되었습니다.</h4>
 				정상적으로 글을 수정했습니다.
@@ -40,7 +40,7 @@
 				<h4>비밀번호가 틀립니다.</h4>
 				비밀번호를 다시 확인해 주세요.
 			</div>
-		</c:if>
+		</c:if> --%>
 		<%-- 	} catch (BizPasswordNotMatchedException ex) {
 		%>
 		<div class="alert alert-warning">

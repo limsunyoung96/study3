@@ -13,17 +13,7 @@
   <div class="page-header">
     <h3>자유게시판 - <small>글 수정</small></h3>
   </div>
-	<c:if test="${not empty ex}">
-			<div class="alert alert-warning">
-				<p> 해당 글이 존재하지 않습니다. </p> 
-				<a href="freeList.wow" class="btn btn-default btn-sm"> 
-					<span class="glyphicon glyphicon-list" aria-hidden="true"></span>
-					&nbsp;목록  
-				</a>
-			</div>		
-		</c:if>		
-  
-  <c:if test="${empty ex}">	
+	
 	<form action="freeModify.wow" method="post">
 	<input type="hidden" name="boNo" value="${boardVO.boNo}">	
 	<table class="table table-striped table-bordered">
@@ -110,7 +100,6 @@
 		</tr>
 	</table>
 	</form>
-	</c:if>	
 </div><!-- container -->
 </body>
 </html>

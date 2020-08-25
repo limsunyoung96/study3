@@ -16,7 +16,7 @@
 	String msg = request.getParameter("msg");
 	String name = "";
 	String s_checked = "";
-	String cookie = request.getHeader("Cookie"); //쿠키 헤어정보 가져오기
+	//String cookie = request.getHeader("Cookie"); //쿠키 헤어정보 가져오기
 	CookieUtils cookieUtils = new CookieUtils(request);
 	/* if(cookie !=null){ */
 	if(cookieUtils.getValue("SAVE_ID") !=null){
@@ -31,17 +31,8 @@
 %>
 	<%@ include file ="/WEB-INF/inc/top.jsp" %>
 	<div class="container">
-		<form action="loginCheck.jsp" class="loginForm">
+		<form action="login.wow" method="post" class="loginForm">
 			<h2>로그인</h2>
-			<%
-				if(msg != null && !msg.isEmpty()){
-			%>
-			<div>
-				<p><%=msg %></p>
-			</div>
-			<%
-				}
-			%>
 			<table class="table table-bordered">
 				<tbody>
 					<tr>

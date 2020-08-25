@@ -5,6 +5,8 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.beanutils.BeanUtils;
+
 import com.study.code.service.CommonCodeServiceImpl;
 import com.study.code.service.ICommonCodeService;
 import com.study.code.vo.CodeVO;
@@ -21,6 +23,10 @@ public class FreeListController implements IController {
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		FreeBoardSearchVO searchVO = new FreeBoardSearchVO();
+//		searchVO.setSearchCategory(req.getParameter("searchCategory"));
+		BeanUtils.populate(searchVO, req.getParameterMap());
+		req.setAttribute("searchVO", searchVO);
+		
 		List<FreeBoardVO> boards = freeBoardService.getBoardList(searchVO);
 		req.setAttribute("boards", boards);
 

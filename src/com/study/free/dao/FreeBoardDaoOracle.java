@@ -311,7 +311,7 @@ public class FreeBoardDaoOracle implements IFreeBoardDao {
 			sb.append("DELETE FROM free_board    ");
 			sb.append("WHERE   bo_no = ?         ");
 			
-			System.out.println(sb.toString().replaceAll("\\s{2,}", ""));
+			System.out.println(sb.toString().replaceAll("\\s{2,}", " "));
 			
 			pstmt = conn.prepareStatement(sb.toString());
 			// 바인드 변수 설정

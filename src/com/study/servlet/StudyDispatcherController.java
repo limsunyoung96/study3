@@ -41,6 +41,7 @@ public class StudyDispatcherController extends HttpServlet {
 			String viewPage = null;
 			IController controller = null;
 			controller = handlerMapping.getHandler(uri);
+			System.out.println("controller=" + controller);
 			if (controller != null) {
 				// 3. 요청에 따른 기능 수행
 				// 4. 기능 수행에 따른 결과(모델)를 속성에 저장한다.

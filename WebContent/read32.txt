@@ -1,0 +1,7 @@
+# read32.txt
+
+32일차 : 공통 메시지 처리 (redirect, forward)
+		글 수정, 삭제 부분을 ResultMessageVO로 처리하여 주세요
+		(필요시 리다이렉트 하셔도 됩니다.)
+		글 수정이 성공한 경우 -> 글 상세보기로 리다이렉트
+		/free/freeView.wow?boNo=25
