@@ -1,28 +1,16 @@
-<%@page import="com.study.exception.BizDuplicateKeyException"%>
-<%@page import="com.study.member.service.MemberServiceImpl"%>
-<%@page import="com.study.member.service.IMemberService"%>
-<%@page import="java.sql.PreparedStatement"%>
-<%@page import="java.sql.SQLException"%>
-<%@page import="java.sql.DriverManager"%>
-<%@page import="java.sql.ResultSet"%>
-<%@page import="java.sql.Statement"%>
-<%@page import="java.sql.Connection"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%
-	request.setCharacterEncoding("utf-8");
-%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
 <%@ include file="/WEB-INF/inc/header.jsp"%>
-<title>memberList.jsp</title>
+<title>memberRegist.jsp</title>
 </head>
 <body>
 	<%@ include file="/WEB-INF/inc/top.jsp"%>
 	<div class="container">
 		<h3>회원등록</h3>
-		<jsp:useBean id="member" class="com.study.member.vo.MemberVO" />
+		<%-- <jsp:useBean id="member" class="com.study.member.vo.MemberVO" />
 		<jsp:setProperty property="*" name="member" />
 		${member}
 		<%
@@ -43,7 +31,12 @@
 			</div>	
 		<%
 		}
-		%>
+		%> --%>
+		
+		<a href="memberList.wow" class="btn btn-info btn-sm"> <span
+			class="glyphicon glyphicon-list" aria-hidden="true"></span>
+			&nbsp;&nbsp;목록
+		</a>
 	
 </body>
 </html>

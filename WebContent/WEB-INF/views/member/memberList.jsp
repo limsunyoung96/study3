@@ -1,16 +1,7 @@
-<%@page import="com.study.code.vo.CodeVO"%>
-<%@page import="com.study.code.service.CommonCodeServiceImpl"%>
-<%@page import="com.study.code.service.ICommonCodeService"%>
-<%@page import="com.study.member.vo.MemberVO"%>
-<%@page import="com.study.member.service.MemberServiceImpl"%>
-<%@page import="com.study.member.service.IMemberService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fm" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%
-	request.setCharacterEncoding("utf-8");
-%>   
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -19,20 +10,6 @@
 </head>
 <body>
 	<%@ include file="/WEB-INF/inc/top.jsp"%>
-	<jsp:useBean id="searchVO" class="com.study.member.vo.MemberSearchVO" />
-	<jsp:setProperty property="*" name="searchVO" />
-	<%
-		IMemberService memberService = new MemberServiceImpl();
-		List<MemberVO> members = memberService.getMemberList(searchVO);
-		request.setAttribute("members", members); /* members란 속성에 members를 대입시키는 것*/
-		
-		ICommonCodeService codeService = new CommonCodeServiceImpl();
-		List<CodeVO> jobCateList = codeService.getCodeListByParent("JB00");
-		request.setAttribute("jobCateList", jobCateList);
-		
-		List<CodeVO> hobbyCateList = codeService.getCodeListByParent("HB00");
-		request.setAttribute("hobbyCateList", hobbyCateList);
-	%>
 	<%-- <c:set var="members" value = "<%=members %>" scope = "request"> --%>
 	<div class="container">
 		<h3>회원목록 - <small>목록조회</small></h3>
@@ -41,7 +18,7 @@
 		<!-- START : 검색 폼  -->
 		<div class="collapse.in panel panel-default" id="id_search_area">
 			<div class="panel-body">
-				<form name="frm_search" action="memberList.jsp" method="post"
+				<form name="frm_search" action="memberList.wow" method="post"
 					class="form-horizontal">
 					<input type="hidden" name="curPage" value="${searchVO.curPage}">
 					<input type="hidden" name="rowSizePerPage"
@@ -131,7 +108,7 @@
 			</div>
 			
 			<div>
-			<a href="memberForm.jsp" class="btn btn-primary btn-sm pull-right">회원등록</a>
+			<a href="memberForm.wow" class="btn btn-primary btn-sm pull-right">회원등록</a>
 			</div>
 		</div>
 		<!-- END : 목록건수 및 회원등록 버튼  -->
@@ -161,7 +138,7 @@
 			<c:forEach var="members" items="${members}">
 				<tr>
 					<td>${members.memId }</td>
-					<td><a href="memberView.jsp?memId=${members.memId}">${members.memName}</a></td>
+					<td><a href="memberView.wow?memId=${members.memId}">${members.memName}</a></td>
 					<td>${members.memHp}</td>
 					<td>${members.memBir}</td>
 					<td>${members.memJobNm}</td>
@@ -177,7 +154,7 @@
 			<ul class="pagination">
 				<!-- 이전 페이지 -->
 				<c:if test="${searchVO.firstPage > 1 }">
-					<li><a href="memberList.jsp?curPage=${searchVO.firstPage-1}"
+					<li><a href="memberList.wow?curPage=${searchVO.firstPage-1}"
 						data-page="${searchVO.firstPage-1}"><span aria-hidden="true">&laquo;</span></a></li>
 				</c:if>
 				<!-- 페이지 넘버링  -->
@@ -187,13 +164,13 @@
 						<li class="active"><a href="#">${i}</a></li>
 					</c:if>
 					<c:if test="${searchVO.curPage != i}">
-						<li><a href="memberList.jsp?curPage=${i}" data-page="${i}">${i}</a></li>
+						<li><a href="memberList.wow?curPage=${i}" data-page="${i}">${i}</a></li>
 					</c:if>
 				</c:forEach>
 
 				<!-- 다음  페이지  -->
 				<c:if test="${searchVO.lastPage < searchVO.totalPageCount}">
-					<li><a href="memberList.jsp?curPage=${searchVO.lastPage+1}"
+					<li><a href="memberList.wow?curPage=${searchVO.lastPage+1}"
 						data-page="${searchVO.lastPage+1}"><span aria-hidden="true">&raquo;</span></a></li>
 				</c:if>
 			</ul>

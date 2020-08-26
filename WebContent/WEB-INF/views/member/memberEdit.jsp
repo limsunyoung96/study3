@@ -1,10 +1,3 @@
-<%@page import="com.study.code.vo.CodeVO"%>
-<%@page import="com.study.code.service.CommonCodeServiceImpl"%>
-<%@page import="com.study.code.service.ICommonCodeService"%>
-<%@page import="com.study.exception.BizNotFoundException"%>
-<%@page import="com.study.member.vo.MemberVO"%>
-<%@page import="com.study.member.service.MemberServiceImpl"%>
-<%@page import="com.study.member.service.IMemberService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>	
@@ -19,34 +12,7 @@
 	<%@ include file="/WEB-INF/inc/top.jsp" %>
  <div class="container" >	
 	<h3>회원 정보 수정 </h3>		
-<% 
-		IMemberService memberService = new MemberServiceImpl();
-		ICommonCodeService codeService = new CommonCodeServiceImpl();
-		try{
-			String memId = request.getParameter("memId");
-			MemberVO mem = memberService.getMember(memId);
-			request.setAttribute("mem", mem);
-			
-			List<CodeVO> jobList = codeService.getCodeListByParent("JB00");
-			List<CodeVO> hobbyList = codeService.getCodeListByParent("HB00");
-			request.setAttribute("jobList", jobList);
-			request.setAttribute("hobbyList", hobbyList);
-		}catch(BizNotFoundException ex){
-			request.setAttribute("ex", ex);
-		}
-%>
-	<c:if test="${not empty ex}">
-			<div class="alert alert-warning">
-				<p> 해당 회원이 존재하지 않습니다. </p> 
-				<a href="memberList.jsp" class="btn btn-default btn-sm"> 
-					<span class="glyphicon glyphicon-list" aria-hidden="true"></span>
-					&nbsp;목록  
-				</a>
-			</div>		
-		</c:if>		
-
-	<c:if test="${empty ex}">	
-	<form action="memberModify.jsp" method="post" >
+	<form action="memberModify.wow" method="post" >
 		<input type="hidden" name="memId" value='${mem.memId}' >
 	<table class="table table-striped table-bordered">
 		<tbody>
@@ -142,10 +108,16 @@
 				</tr>	
 			<tr>
 				<td colspan="2">
-					<a href="memberList.jsp" class="btn btn-info btn-sm" >
+					<a href="memberList.wow" class="btn btn-info btn-sm" >
 						<span class="glyphicon glyphicon-list" aria-hidden="true"></span>
 						&nbsp; 목록 
 					</a>
+					
+					<button type="submit"  formaction="memberDelete.wow" class="btn btn-sm btn-danger"> 
+                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                &nbsp;&nbsp;삭제
+              </button>
+					
 					<button type="submit" class="btn btn-primary"  >
 					  <span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>
 						&nbsp; 저장  
@@ -155,7 +127,6 @@
 		</tbody>	
 	</table>	
 	</form>
-	</c:if>	
 </div>
 
 </body>

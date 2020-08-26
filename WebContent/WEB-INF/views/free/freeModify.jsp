@@ -1,15 +1,6 @@
-<%@page import="com.study.free.vo.FreeBoardVO"%>
-<%@page import="com.study.exception.BizPasswordNotMatchedException"%>
-<%@page import="com.study.exception.BizNotFoundException"%>
-<%@page import="com.study.exception.BizNotEffectedException"%>
-<%@page import="com.study.free.service.FreeBoardServiceImpl"%>
-<%@page import="com.study.free.service.IFreeBoardService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%
-	request.setCharacterEncoding("UTF-8");
-%>
 <!DOCTYPE html >
 <html lang="ko">
 <html>

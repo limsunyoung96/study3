@@ -29,8 +29,7 @@ public class FreeDeleteController implements IController {
 		try { // 성공
 			board.setBoIp(req.getRemoteAddr());
 			freeBoardService.removeBoard(board);
-			return "redirect:/free/freeView.wow?boNo="+req.getParameter("boNo");
-			
+			return "redirect:/free/freeList.wow";
 				
 		} catch (BizNotFoundException exNotFound) {
 			exNotFound.printStackTrace();

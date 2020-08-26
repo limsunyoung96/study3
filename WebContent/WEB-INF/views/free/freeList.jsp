@@ -1,9 +1,3 @@
-<%@page import="com.study.code.service.CommonCodeServiceImpl"%>
-<%@page import="com.study.code.vo.CodeVO"%>
-<%@page import="com.study.code.service.ICommonCodeService"%>
-<%@page import="com.study.free.vo.FreeBoardVO"%>
-<%@page import="com.study.free.service.FreeBoardServiceImpl"%>
-<%@page import="com.study.free.service.IFreeBoardService"%>
 <%@page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>

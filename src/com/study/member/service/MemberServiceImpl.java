@@ -1,15 +1,14 @@
 package com.study.member.service;
 
 import java.sql.Connection;
-import java.sql.Driver;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.List;
 
 import com.study.exception.BizDuplicateKeyException;
-import com.study.exception.BizException;
 import com.study.exception.BizNotEffectedException;
 import com.study.exception.BizNotFoundException;
+import com.study.exception.BizPasswordNotMatchedException;
 import com.study.exception.DaoDuplicateKeyException;
 import com.study.exception.DaoException;
 import com.study.member.dao.IMemberDao;
@@ -49,7 +48,7 @@ public class MemberServiceImpl implements IMemberService {
 	}
 
 	@Override
-	public void modifyMember(MemberVO member) throws BizNotEffectedException, BizNotFoundException {
+	public void modifyMember(MemberVO member) throws BizNotEffectedException, BizNotFoundException, BizPasswordNotMatchedException {
 		Connection conn = null;
 		try {
 			conn = DriverManager.getConnection("jdbc:apache:commons:dbcp:study");
@@ -60,6 +59,9 @@ public class MemberServiceImpl implements IMemberService {
 			int cnt = memberDao.updateMember(conn, member);
 			if(cnt < 1) {
 				throw new BizNotEffectedException("[" + member.getMemId() + "] 수정 실패");
+			}
+			if ( !(vo.getMemPass().equals(member.getMemPass()))) {
+				throw new BizPasswordNotMatchedException();
 			}
 		} catch (SQLException e) {
 			throw new DaoException("조회시", e);
@@ -75,9 +77,32 @@ public class MemberServiceImpl implements IMemberService {
 	}
 
 	@Override
-	public void removeMember(MemberVO member) throws BizNotEffectedException, BizNotFoundException {
-		// TODO Auto-generated method stub
-
+	public void removeMember(MemberVO member) throws BizNotEffectedException, BizNotFoundException, BizPasswordNotMatchedException {
+		Connection conn = null;
+		try {
+			conn = DriverManager.getConnection("jdbc:apache:commons:dbcp:study");
+			MemberVO vo = memberDao.getMember(conn, member.getMemId());
+			if (vo == null) {
+				throw new  BizNotFoundException();
+			}
+			if ( !(vo.getMemPass().equals(member.getMemPass()))) {
+				throw new BizPasswordNotMatchedException();
+			}
+			int cnt = memberDao.deleteMember(conn, member);
+			if (cnt < 1) {  
+				throw new BizNotEffectedException();
+				}
+//			BizPasswordNotMatchedException 이거 던지려면 !=대신 !( .equals)
+		} catch (SQLException e) {
+			throw new DaoException(e);
+		} finally {
+			// 자원 종료
+			if (conn != null)
+				try {
+					conn.close();
+				} catch (SQLException e) {
+				}
+		}
 	}
 
 	@Override

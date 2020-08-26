@@ -1,7 +1,3 @@
-<%@page import="com.study.exception.BizNotFoundException"%>
-<%@page import="com.study.member.vo.MemberVO"%>
-<%@page import="com.study.member.service.MemberServiceImpl"%>
-<%@page import="com.study.member.service.IMemberService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -14,28 +10,7 @@
 <body>
 	<%@ include file="/WEB-INF/inc/top.jsp"%>
 	<div class="container">
-<%
-		IMemberService memberService = new MemberServiceImpl();
-	try{
-		String memId = request.getParameter("memId");
-		MemberVO mem = memberService.getMember(memId);
-		request.setAttribute("mem", mem);
-		System.out.println(mem);
-	}catch(BizNotFoundException ex){
-		request.setAttribute("ex", ex);
-	}
-%>
 		<h3>회원 상세 정보</h3>
-		<c:if test="${not empty ex}">
-			<div class = "alert alert-warning">
-				해당 회원이 존재하지 않습니다.<br>
-				<a href="memberList.jsp" class="btn btn-info">
-					<span class="glyphicon glyphicon-list" aria-hidden="true"></span>
-					&nbsp;목록
-				</a>
-			</div>
-			</c:if>
-			<c:if test="${empty ex}">
 		<table class="table table-striped ">
 			<tbody>
 				<tr>
@@ -88,21 +63,20 @@
 				</tr>
 				<tr>
 
-					<td colspan="2"><a href="memberList.jsp" class="btn btn-info">
+					<td colspan="2"><a href="memberList.wow" class="btn btn-info">
 							<span class="glyphicon glyphicon-list" aria-hidden="true"></span>
 							&nbsp;목록
 					</a> <!-- <button type="submit" class="btn btn-default">
 							<span class="glyphicon glyphicon-circle-arrow-right"
 								aria-hidden="true"></span> 회원가입
 					</button> --> <!--   --> <a
-						href="memberEdit.jsp?memId=${param.memId}" class="btn btn-info">
+						href="memberEdit.wow?memId=${param.memId}" class="btn btn-info">
 							<span class="glyphicon glyphicon-apple" aria-hidden="true"></span>
 							수정
 					</a></td>
 				</tr>
 			</tbody>
 		</table>
-				</c:if>
 	</div>
 	
 </body>

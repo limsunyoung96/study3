@@ -51,7 +51,7 @@ public class LoginServiceImpl implements ILoginService {
 
 	@Override
 	public void logout(UserVO user) {
-
+		//TODO 로그인 이력테이블이 완성되면 처리
 	}
 
 }

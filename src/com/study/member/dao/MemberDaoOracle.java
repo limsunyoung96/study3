@@ -190,7 +190,38 @@ public class MemberDaoOracle implements IMemberDao {
 
 	@Override
 	public int deleteMember(Connection conn, MemberVO member) {
-		return 0;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		StringBuffer sb = new StringBuffer();
+		
+		try {
+			sb.append("DELETE FROM member    ");
+			sb.append("WHERE   mem_id = ?         ");
+			
+			System.out.println(sb.toString().replaceAll("\\s{2,}", " "));
+			
+			pstmt = conn.prepareStatement(sb.toString());
+			// 바인드 변수 설정
+			int i = 1;
+			pstmt.setString(i++, member.getMemId());
+			
+			int cnt = pstmt.executeUpdate();
+			return cnt;
+			
+		} catch (SQLException e) {
+			throw new DaoException(e.getMessage(), e);
+		} finally {
+			if (rs != null)
+				try {
+					rs.close();
+				} catch (SQLException e) {
+				}
+			if (pstmt != null)
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+				} // catch
+		} // funally
 	}
 
 	@Override
