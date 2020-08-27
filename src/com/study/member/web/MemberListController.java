@@ -29,7 +29,6 @@ public class MemberListController implements IController {
 		
 		List<MemberVO> members = memberService.getMemberList(searchVO);
 		req.setAttribute("members", members); /* members란 속성에 members를 대입시키는 것 */
-
 		
 		List<CodeVO> jobCateList = codeService.getCodeListByParent("JB00");
 		req.setAttribute("jobCateList", jobCateList);

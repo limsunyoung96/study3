@@ -9,6 +9,7 @@ import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.study.common.sql.CommonSQL;
 import com.study.exception.DaoDuplicateKeyException;
 import com.study.exception.DaoException;
 import com.study.free.vo.FreeBoardSearchVO;
@@ -68,9 +69,12 @@ public class FreeBoardDaoOracle implements IFreeBoardDao {
 		StringBuffer sb = new StringBuffer();
 		List<FreeBoardVO> list = new ArrayList<FreeBoardVO>();
 		try {
-			sb.append("SELECT *                           ");
-			sb.append("  FROM ( SELECT rownum rnum , a.*  ");
-			sb.append("          FROM (			          ");
+//			sb.append("SELECT *                           ");
+//			sb.append("  FROM ( SELECT rownum rnum , a.*  ");
+//			sb.append("          FROM (			          ");
+			
+			sb.append(CommonSQL.PRE_PAGING_SQL);
+			
 			sb.append("SELECT bo_no        ");
 			sb.append("     , bo_title     ");
 			sb.append("     , bo_category  ");
@@ -101,10 +105,11 @@ public class FreeBoardDaoOracle implements IFreeBoardDao {
 			}			
 			sb.append("  ORDER BY bo_no DESC         ");
 			
-			sb.append("        		  ) a            ");
-			sb.append("          WHERE rownum <= ?   ");
-			sb.append("        ) b                   ");
-			sb.append(" WHERE rnum BETWEEN ? AND ?   ");
+			sb.append(CommonSQL.SUF_PAGING_SQL);
+//			sb.append("        		  ) a            ");
+//			sb.append("          WHERE rownum <= ?   ");
+//			sb.append("        ) b                   ");
+//			sb.append(" WHERE rnum BETWEEN ? AND ?   ");
 			
 			System.out.println(sb.toString().replaceAll("\\s{2,}", " "));
 			pstmt = conn.prepareStatement(sb.toString());

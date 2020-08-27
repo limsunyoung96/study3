@@ -1,0 +1,16 @@
+# read33.txt
+
+33일차 : 회원관리(관리자) 처리 (자유게시판 처럼)
+		com.study.member.web : MemberListController, ....
+		MemberListController 기본을 만드셔서 복사 붙이기
+		각 jsp 파일에 있는 비즈니스 로직 코드를 컨트롤러에 적용
+		study_uri.properties에 uri와 컨트롤러 등록 후 테스트 (하나씩 ...)
+		
+
+34일차: 16장 사용자 정의 태그라이브러리
+
+35일차 : 필터
+
+36,7일차: MyBatis
+----------------------------
+38일차 ~ 44일차 : Spring

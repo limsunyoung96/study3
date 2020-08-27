@@ -9,6 +9,7 @@ import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.study.common.sql.CommonSQL;
 import com.study.exception.DaoDuplicateKeyException;
 import com.study.exception.DaoException;
 import com.study.member.vo.MemberSearchVO;
@@ -360,9 +361,12 @@ public class MemberDaoOracle implements IMemberDao {
 		List<MemberVO> list = new ArrayList<MemberVO>();
 
 		try {
-			sb.append("SELECT * ");
-			sb.append("FROM (SELECT rownum rnum, a.*    ");
-		 	sb.append("        FROM ( SELECT mem_id    , mem_pass  , mem_name         ");
+//			sb.append("SELECT * ");
+//			sb.append("FROM (SELECT rownum rnum, a.*    ");
+//		 	sb.append("        FROM ( " );
+		 	sb.append(CommonSQL.PRE_PAGING_SQL);
+		 	
+		 	sb.append(" SELECT mem_id    , mem_pass  , mem_name         ");
 			sb.append("                  , TO_CHAR(mem_bir,'YYYY-MM-DD') AS mem_bir ");
 			sb.append("                  , mem_zip     , mem_add1                   ");
 			sb.append("                 , mem_add2  , mem_hp    , mem_mail            ");
@@ -394,10 +398,12 @@ public class MemberDaoOracle implements IMemberDao {
 			}			
 			sb.append("  ORDER BY mem_id DESC         ");
 			
-			sb.append("        		  ) a            ");
-			sb.append("          WHERE rownum <= ?   ");
-			sb.append("        ) b                   ");
-			sb.append(" WHERE rnum BETWEEN ? AND ?   ");
+			
+			sb.append(CommonSQL.SUF_PAGING_SQL);
+//			sb.append("        		  ) a            ");
+//			sb.append("          WHERE rownum <= ?   ");
+//			sb.append("        ) b                   ");
+//			sb.append(" WHERE rnum BETWEEN ? AND ?   ");
 			
 			System.out.println(sb.toString().replaceAll("\\s{2,}", " "));
 			
