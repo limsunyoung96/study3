@@ -152,8 +152,8 @@
 		
 		<!-- START : 페이지네이션  -->
 		<nav class="text-center">
-		<mytage:paging pagingVO="${searchVO}" linkPage="memberList.wow"/>
-	</nav>
+			<mytage:paging pagingVO="${searchVO}" linkPage="memberList.wow" />
+		</nav>
 		<!-- END : 페이지네이션  -->
 		
 	</div>

@@ -1,7 +1,7 @@
 <%@tag import="com.sun.xml.internal.ws.api.ha.StickyFeature"%>
 <%@tag import="java.util.Map"%>
 <%@ tag language="java" pageEncoding="UTF-8"%>
-<%@ tag trimDirectiveWhitespaces="true" body-content="empty"%>
+<%@ tag trimDirectiveWhitespaces="true" body-content="scriptless"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ attribute name="items" required="true" type="java.util.Collection"%>
 <%@ attribute name="name" required="true"%>
@@ -23,9 +23,11 @@
 
 <select name="${name}"
 	<c:forEach items="${attrMap}" var="attr"> ${attr.key}="${attr.value}"</c:forEach>>
+	<jsp:doBody/>
 	<c:forEach items="${items}" var="code">
 		<option value="${code[itemValue]}"
 			${code[itemValue] eq value ? "selected='selected'" : ""}>${code[itemLabel]}
 		</option>
 	</c:forEach>
 </select>
+

@@ -42,6 +42,14 @@
 					class="form-control input-sm"
 					id="id_memJob2"					
 					 />
+	<hr>
+		<mytag:select items="${jobs}" name="memJob" itemLabel="commNm"
+			itemValue="commCd" required="required"
+			class="form-control input-sm" id="id_memJob2">
+			<option value="${myJob}" >-- 직업 선택 --</option>
+		</mytag:select>
+
+	</div>
 	
 	</div>
 	<!-- container -->

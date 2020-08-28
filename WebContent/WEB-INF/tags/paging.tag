@@ -2,9 +2,18 @@
 <%-- paging.tag --%>
 <%@ tag trimDirectiveWhitespaces="true" body-content="empty"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ attribute name="pagingVO" required="true" type="com.study.common.vo.PagingVO"%>
 <%@ attribute name="linkPage" required="true" type="java.lang.String"%>
 
+<!-- paging.tag -->
+<!-- linkPage = "freeList.wow -> 그대로
+	  linkPage = "/free/freeList.wow -> /study3/free/freeList.wow : 컨텍스트 경로 추가
+	  linkPage = "http:// xxxxx.freeList.wow" 그대로
+-->
+<c:if test='${fn:startsWith(linkPage,"/")}'>
+	<c:set var="linkPage" value="${pageContext.request.contextPath}${linkPage}"/>
+</c:if>
 
 
 <ul class="pagination">
