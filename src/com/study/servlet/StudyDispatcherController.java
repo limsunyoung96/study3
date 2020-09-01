@@ -2,25 +2,31 @@ package com.study.servlet;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.study.servlet.handler.UrlHandlerMapping;
+import com.study.servlet.view.StudyViewResolver;
+import com.study.servlet.view.View;
+
 
 public class StudyDispatcherController extends HttpServlet {
+
 	private UrlHandlerMapping handlerMapping;
+	private StudyViewResolver viewResolver;
 
 	@Override
 	public void init() throws ServletException {
-		// 서블릿의 초기화 메서드(init)에서 설정 프로퍼티를 읽고 HandlerMapping 객체를 생성한다.
+		// 서블릿의 초기화 메서드(init)에서 설정
+		// contextConfigLocation 파라미터를 읽고 HandlerMapping 객체를 생성한다.
+		// ViewResolver 객체 생성 및 초기화
 		String contextConfigLocation = getInitParameter("contextConfigLocation");
 		try {
 			handlerMapping = new UrlHandlerMapping(getServletContext(), contextConfigLocation);
+			viewResolver = new StudyViewResolver().setPrefix("/WEB-INF/views/").setSuffix(".jsp");
 		} catch (Exception e) {
-			e.printStackTrace();
 			throw new ServletException(e);
 		}
 	} // init
@@ -35,8 +41,7 @@ public class StudyDispatcherController extends HttpServlet {
 		uri = uri.substring(req.getContextPath().length());
 		// uri에 세미콜론이 있는 경우 제거 ;jsession
 		System.out.printf("요청 URI = %s\n", uri);
-		
-		
+
 		try {
 			String viewPage = null;
 			IController controller = null;
@@ -49,15 +54,13 @@ public class StudyDispatcherController extends HttpServlet {
 				viewPage = controller.process(req, resp);
 
 				// 5. 알맞은 뷰로 이동 (forward or redirect)
-				if (viewPage != null) {
-					if (viewPage.startsWith("redirect:")) {
-						// 아래 코드는 Redirect 요청이 절대경로 형식으로 작성되었다고 가정함
-						resp.sendRedirect(req.getContextPath() + viewPage.substring("redirect:".length()));
-					} else {
-						// RequestDispatcher는 인클루드, 포워드를 전담하는 객체
-						RequestDispatcher dispatcher = req.getRequestDispatcher(viewPage);
-						dispatcher.forward(req, resp);
-					}
+				View view = viewResolver.resolveViewName(viewPage);
+				if (view != null) {
+					view.render(req, resp);
+				} else {
+					// controller가 널이면 요청에 대한 정보가 없는 것이므로
+					System.out.printf("uri=[%s] 에 해당하는 컨트롤러가 존재하지 않습니다.", uri);
+					resp.sendError(HttpServletResponse.SC_NOT_FOUND); // 404
 				}
 				// 현재 뷰페이지가 널인 경우 처리 안함 (요청 URI 기반 뷰처리 or 예외 처리)
 			} else {

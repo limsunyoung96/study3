@@ -25,7 +25,7 @@ public class MemberViewController implements IController {
 
 			req.setAttribute("mem", mem);
 			System.out.println(mem);
-			return "/WEB-INF/views/member/memberView.jsp";
+			return "member/memberView";
 		} catch (BizNotFoundException ex) {
 			ex.printStackTrace();
 			req.setAttribute("ex", ex);
@@ -36,7 +36,7 @@ public class MemberViewController implements IController {
 					  .setUrl("/member/memberList.wow")
 					  .setUrlTitle("목록으로");
 			req.setAttribute("messgaveVO", messageVO);
-			return "/WEB-INF/views/common/message.jsp";
+			return "common/message";
 		}
 	}
 

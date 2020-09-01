@@ -88,9 +88,9 @@
 				<td colspan="2"><button type="submit" class="btn btn-default" >
 				<span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>
 				회원가입</button>
-				<a href="#" class="btn btn-info">
+				<!-- <a href="#" class="btn btn-info">
 				<span class="glyphicon glyphicon-apple" aria-hidden="true"></span>
-				그냥 링크</a>
+				그냥 링크</a> -->
 				</td>
 			</tr>
 		</tbody>	

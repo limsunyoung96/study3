@@ -1,6 +1,5 @@
 package com.study.member.dao;
 
-import java.sql.Connection;
 import java.util.List;
 
 import com.study.member.vo.MemberSearchVO;
@@ -10,16 +9,15 @@ public interface IMemberDao {
 
 	/**
 	 * <b>목록건수 리턴</b>
-	 * @param conn
 	 * @param searchVO
 	 * @return int
 	 */
-	public int getBoardCount(Connection conn, MemberSearchVO searchVO);
+	public int getBoardCount(MemberSearchVO searchVO);
 	
-	public int insertMember(Connection conn, MemberVO member);
-	public int updateMember(Connection conn, MemberVO member);
-	public int deleteMember(Connection conn, MemberVO member);
-	public MemberVO getMember(Connection conn, String memId);
-	public List<MemberVO> getMemberList(Connection conn, MemberSearchVO searchVO);
-	MemberVO getMemberList(Connection conn, String memId);
+	public int insertMember(MemberVO member);
+	public int updateMember(MemberVO member);
+	public int deleteMember(MemberVO member);
+	public MemberVO getMember(String memId);
+	public List<MemberVO> getMemberList(MemberSearchVO searchVO);
+	MemberVO getMemberList(String memId);
 }

@@ -1,0 +1,16 @@
+# read36.txt
+
+ DAO : JDBC관련 작업처리
+ 		- 노가다 코딩 (중복된 작업)
+ 		 (Conndection, pstmt에서 파라미터 설정, ...)
+ 		- 쉽게 할 수 없을까?
+ 		  쿼리를 외부파일로 생성하면 어떨까? (xml)
+ 		  각 IT업체에서 이미 솔루션이 있었습니다.
+ 		  오픈소스 iBatis -> MyBatis
+ 		  
+ src: mybatus: mybatis-config.xml 생성
+ 	   mybatis.mapper: 각 매퍼파일 생성 (member.xml, freeboard.xml,...)
+ 		
+ DBL 비교연산자 >, < 문제
+ 	 <: &lt;
+ 	 >: &gt;

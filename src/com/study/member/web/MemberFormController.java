@@ -23,7 +23,7 @@ public class MemberFormController implements IController {
 		 List<CodeVO> hobbyList = codeService.getCodeListByParent("HB00");
 		 req.setAttribute("jobList", jobList);
 		 req.setAttribute("hobbyList", hobbyList);
-		return "/WEB-INF/views/member/memberForm.jsp";
+		return "member/memberForm";
 	}
 
 }

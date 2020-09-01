@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- mybatis/mybatis-config.xml -->
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+	<settings>
+		<!-- 전통적인 데이터베이스 칼럼명 형태인 A_COLUMN을 CamelCase형태의 자바 프로퍼티명 형태인 aColumn으로 
+			자동으로 매핑하도록 함 -->
+		<setting name="mapUnderscoreToCamelCase" value="true" />
+	</settings>
+
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC" />
+			<dataSource type="POOLED">
+				<property name="driver"
+					value="oracle.jdbc.driver.OracleDriver" />
+				<property name="url"
+					value="jdbc:oracle:thin:@127.0.0.1:1521:xe" />
+				<property name="username" value="java" />
+				<property name="password" value="oracle" />
+			</dataSource>
+		</environment>
+	</environments>
+
+	<mappers>
+		<!-- spring 사용시 설정파일에서 "*" 사용 가능 "mybatis/mapper/*.xml" -->
+		<mapper resource="/mybatis/mapper/freeboard.xml" />
+		<mapper resource="/mybatis/mapper/member.xml" />
+		<mapper resource="/mybatis/mapper/common.xml" />
+		<mapper resource="/mybatis/mapper/code.xml" />
+	</mappers>
+
+</configuration>

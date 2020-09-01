@@ -48,7 +48,7 @@ public class FreeModifyController implements IController {
 		}
 		req.setAttribute("messageVO", messageVO);
 		
-		return "/WEB-INF/views/common/message.jsp";
+		return "common/message";
 	}
 
 }

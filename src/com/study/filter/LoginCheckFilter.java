@@ -26,10 +26,10 @@ public class LoginCheckFilter implements Filter {
 		HttpSession session = req.getSession();
 		UserVO user = (UserVO) session.getAttribute("USER_INFO");
 		if (user == null) {
-			((HttpServletResponse) response).sendRedirect("/study3/login/login.wow");
+			((HttpServletResponse) response).sendRedirect(req.getContextPath() + "/login/login.wow");
 		} else {
 			chain.doFilter(request, response);
 		}
 
-	}//doFilter
+	}// doFilter
 }

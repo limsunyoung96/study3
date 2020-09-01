@@ -30,7 +30,7 @@ public class FreeEditController implements IController {
 		}catch(BizNotFoundException ex){
 			req.setAttribute("ex", ex);
 		}
-		return "/WEB-INF/views/free/freeEdit.jsp";
+		return "free/freeEdit";
 	}
 
 }

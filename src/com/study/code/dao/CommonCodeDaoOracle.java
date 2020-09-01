@@ -1,6 +1,5 @@
 package com.study.code.dao;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,7 +12,7 @@ import com.study.exception.DaoException;
 public class CommonCodeDaoOracle implements ICommonCodeDao {
 
 	@Override
-	public List<CodeVO> getCodeListByParent(Connection conn, String parentCode) {
+	public List<CodeVO> getCodeListByParent(String parentCode) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		StringBuffer sb = new StringBuffer();

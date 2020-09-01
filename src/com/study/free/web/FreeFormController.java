@@ -20,7 +20,7 @@ public class FreeFormController implements IController {
 	public String process(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		List<CodeVO> zzz = codeService.getCodeListByParent("BC00");
 		req.setAttribute("categoryList", zzz);
-		return "/WEB-INF/views/free/freeForm.jsp";
+		return "free/freeForm";
 
 	}
 

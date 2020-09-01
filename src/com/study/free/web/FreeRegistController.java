@@ -49,7 +49,7 @@ public class FreeRegistController implements IController {
 		// 속성에 messageVO 로 저장
 		req.setAttribute("messageVO", messageVO);
 
-		return "/WEB-INF/views/common/message.jsp";
+		return "common/message";
 	}
 
 }

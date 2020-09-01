@@ -34,7 +34,7 @@ public class InfoController implements IController {
 			String memId = user.getUserId();
 			MemberVO mem = memberService.getMember(memId);
 			req.setAttribute("mem", mem);
-			return "/WEB-INF/views/mypage/info.jsp";
+			return "mypage/info";
 			
 		} catch (BizNotFoundException ex) {
 			ex.printStackTrace();
@@ -43,7 +43,7 @@ public class InfoController implements IController {
 			messageVO.setResult(false).setTitle("조회 실패").setMessage("해달 회원이 존재하지 않습니다.")
 					.setUrl("/member/memberList.wow").setUrlTitle("목록으로");
 			req.setAttribute("messgaveVO", messageVO);
-			return "/WEB-INF/views/common/message.jsp";
+			return "common/message";
 		}
 	}
 

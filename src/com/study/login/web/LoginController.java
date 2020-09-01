@@ -23,7 +23,7 @@ public class LoginController implements IController {
 	public String process(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		// 요청 메서드가 GET: login 화면, POST: loginCheck를 할거임
 		if ("GET".equals(req.getMethod())) {
-			return "/WEB-INF/views/login/login.jsp";
+			return "login/login";
 		} else if ("POST".equals(req.getMethod())) {
 			// 로그인 체크
 			UserVO vo = new UserVO();
@@ -50,7 +50,7 @@ public class LoginController implements IController {
 				ResultMessageVO message = new ResultMessageVO();
 				message.setResult(false).setTitle("로그인 실패").setMessage("회원이 존재하지 않거나 비밀번호가 틀립니다.");
 				req.setAttribute("messageVO", message);
-				return "/WEB-INF/view/common/message.jsp";
+				return "/common/message";
 			}
 		} else {
 			// GET / POST 아니면 에러

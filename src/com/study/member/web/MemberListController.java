@@ -36,7 +36,7 @@ public class MemberListController implements IController {
 		List<CodeVO> hobbyCateList = codeService.getCodeListByParent("HB00");
 		req.setAttribute("hobbyCateList", hobbyCateList);
 
-		return "/WEB-INF/views/member/memberList.jsp";
+		return "member/memberList";
 	}
 
 }

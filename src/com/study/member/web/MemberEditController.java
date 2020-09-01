@@ -34,7 +34,7 @@ public class MemberEditController implements IController {
 			req.setAttribute("ex", ex);
 		}
 
-		return "/WEB-INF/views/member/memberEdit.jsp";
+		return "member/memberEdit";
 	}
 
 }

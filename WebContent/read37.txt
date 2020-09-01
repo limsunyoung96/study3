@@ -1,0 +1,6 @@
+# read37.txt
+
+-- 매퍼파일이 생성되면 mybatis-config.xml에 리소드 등록하셔야 합니다.
+	common.xml
+-- MyBatis 동적SQL 처리
+	: 메뉴얼에는 null 비교만 하는데...

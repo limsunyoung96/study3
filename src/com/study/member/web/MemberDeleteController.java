@@ -45,7 +45,7 @@ public class MemberDeleteController implements IController {
 			  .setUrlTitle("목록으로");
 		}
 		req.setAttribute("messageVO", messageVO);
-		return "/WEB-INF/views/common/message.jsp";
+		return "common/message";
 	}
 
 }

@@ -28,6 +28,7 @@
 	<servlet-mapping>
 		<servlet-name>frontController</servlet-name>
 		<url-pattern>*.wow</url-pattern>
+		<url-pattern>*.json</url-pattern>
 	</servlet-mapping>
 
 	<filter>
