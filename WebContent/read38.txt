@@ -1,0 +1,62 @@
+# read38.txt
+
+- MyBatis 동적SQL 처리 
+ : 메뉴얼에는 null 비교만 하는데.. 공백은요?
+	<if test="title != null"
+  <if test="title == 'C' "   X (안되요) 
+  <if test='title == "CD" '
+  <if test='title.equals("CD")' 
+    
+ : 기존 유틸리티(스태틱 메서드)를 사용하고 싶어요? 방법이 있나요?
+    @완전한클래스이를@메서드
+ <if test="@org.apache.commons.lang3.StringUtils@isNotBlank(searchCategory)"
+ 
+ mybatis : xml 문서이다 보니  
+   > , < , & 표현 할 때  
+       &gt; , &lt; , &amp;     
+   or <![CDATA[ > ]]>
+    
+--------------------------------------------------
+ICommonCodeDao :  각 메서드에 Connection 을 제거  : refactor : 메서드 정의 변경 
+
+CommonCodeServiceImpl : 기존 Connection 제거 ,   factory 및 SqlSession 으로 변경 
+
+/mybatis/mapper/code.xml 매퍼파일 작성
+                code.xml 에 상단에 <cache /> 설정 해 주세요 
+/mybatis/mybatis-config.xml : 리소스등록 (쿼리파일)
+ 
+# mypage (내정보, 정보변경, 패스워드 변경, 기록보기...)
+# 1. 회원 정보 변경 (비번 빼고)
+/mypage/info.wow=com.study.mypage.web.InfoController
+/mypage/edit.wow=com.study.mypage.web.EditController : memberEdit.jsp 활용
+/mypage/modify.wow=com.study.mypage.web.ModifyController : 성공여부 메시지로
+
+위 InfoController, EditController 에서 return null;
+
+# 2. RequestToViewNameTranslator 뷰 완성  
+
+# 3. 사용자의 ROLE 구성 
+Table user_role (id, role) 생성, 기존 회원정보에서 데이터 입력 
+필터 : ManagerCheckFilter <- LoginCheckFilter 복사 
+태그 : 
+   sec.tag  
+    <mytag:sec hasRole="MANAGER">
+    	 [ 삭제 ]
+    </mytag:sec>	 
+    [ 저장 ]  
+  
+   
+  
+
+
+
+ 
+ 
+  
+ 
+
+
+
+
+                
+                

@@ -9,6 +9,7 @@
 		<!-- 전통적인 데이터베이스 칼럼명 형태인 A_COLUMN을 CamelCase형태의 자바 프로퍼티명 형태인 aColumn으로 
 			자동으로 매핑하도록 함 -->
 		<setting name="mapUnderscoreToCamelCase" value="true" />
+		<setting name="jdbcTypeForNull" value="NULL" />
 	</settings>
 
 	<environments default="development">
@@ -26,11 +27,12 @@
 	</environments>
 
 	<mappers>
-		<!-- spring 사용시 설정파일에서 "*" 사용 가능 "mybatis/mapper/*.xml" -->
-		<mapper resource="/mybatis/mapper/freeboard.xml" />
-		<mapper resource="/mybatis/mapper/member.xml" />
-		<mapper resource="/mybatis/mapper/common.xml" />
-		<mapper resource="/mybatis/mapper/code.xml" />
+		<!-- spring 사용시 설정파일에서 "*" 사용가능 "mybatis/mapper/*.xml" -->
+		<mapper resource="mybatis/mapper/freeboard.xml" />
+		<mapper resource="mybatis/mapper/common.xml" />
+		<mapper resource="mybatis/mapper/code.xml" />
+		<mapper resource="mybatis/mapper/member.xml" />
+
 	</mappers>
 
 </configuration>

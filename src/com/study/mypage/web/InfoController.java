@@ -15,18 +15,17 @@ import com.study.member.vo.MemberVO;
 import com.study.servlet.IController;
 
 public class InfoController implements IController {
-
+	
 	private IMemberService memberService = new MemberServiceImpl();
 	private ICommonCodeService codeService = new CommonCodeServiceImpl();
-
+	
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		try {
-			HttpSession session = req.getSession();
-			UserVO user = (UserVO) session.getAttribute("USER_INFO");
-			
-			// 로그인이 되지 않은 경우 홈 또는 로그인 화면으로
-			// 동일한 기능을 필터로 하면 좋겠다....
+			HttpSession session = req.getSession();			
+			UserVO user = (UserVO)session.getAttribute("USER_INFO");
+			// 로그인이 되지 않은 경우 홈 또는 로그인 화면으로 
+			// 동일한 기능을 필터로 하면 좋겠다...
 //			if(user == null) {
 //				return "redirect:/";
 //			}
@@ -34,17 +33,16 @@ public class InfoController implements IController {
 			String memId = user.getUserId();
 			MemberVO mem = memberService.getMember(memId);
 			req.setAttribute("mem", mem);
-			return "mypage/info";
+			return null;
 			
 		} catch (BizNotFoundException ex) {
 			ex.printStackTrace();
-			req.setAttribute("ex", ex);
-			ResultMessageVO messageVO = new ResultMessageVO();
-			messageVO.setResult(false).setTitle("조회 실패").setMessage("해달 회원이 존재하지 않습니다.")
-					.setUrl("/member/memberList.wow").setUrlTitle("목록으로");
-			req.setAttribute("messgaveVO", messageVO);
+			ResultMessageVO message = new ResultMessageVO();
+			message.setResult(false)
+			   .setTitle("조회실패")
+			   .setMessage("해당회원이 존재하지 않습니다.");
+			req.setAttribute("messageVO", message);
 			return "common/message";
 		}
 	}
-
 }

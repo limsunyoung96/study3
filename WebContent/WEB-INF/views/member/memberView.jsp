@@ -66,14 +66,15 @@
 					<td colspan="2"><a href="memberList.wow" class="btn btn-info">
 							<span class="glyphicon glyphicon-list" aria-hidden="true"></span>
 							&nbsp;목록
-					</a> <!-- <button type="submit" class="btn btn-default">
-							<span class="glyphicon glyphicon-circle-arrow-right"
-								aria-hidden="true"></span> 회원가입
-					</button> --> <!--   --> <a
-						href="memberEdit.wow?memId=${param.memId}" class="btn btn-info">
-							<span class="glyphicon glyphicon-apple" aria-hidden="true"></span>
-							수정
-					</a></td>
+					</a> 
+					
+					<mytag:sec hasRole="MANAGER">
+							<a href="memberEdit.wow?memId=${mem.memId}" class="btn btn-info btn-sm"> 
+								<span class="glyphicon glyphicon-knight" aria-hidden="true"></span>
+								&nbsp;수정
+							</a>
+						</mytag:sec>
+					</td>
 				</tr>
 			</tbody>
 		</table>
